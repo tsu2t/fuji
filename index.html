@@ -8,16 +8,41 @@
     <link rel="manifest" href="manifest.webmanifest" />
   </head>
   <body>
-    <h1>Hello PWA</h1>
+    <h1>Eitan Go!</h1>
+    <div>
+      <ul>
+        <li><a href="create.html">create new file</a></li>
+        <li><a href="edit.html">edit file</a></li>
+        <li><a href="test.html">test</a></li>
+        <li><a href="study.html">study</a></li>
+      </ul>
+    </div>
+    <div>
+      <p>音声を確認したい単語を入力してください。</p>
+      <input type="text" id="word"></form>
+      <button id="button" onclick="pronounce()">発音を確認</button>
+    </div>
     <script>
-      window.addEventListener('load', () => {
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker
-            .register('sw.js')
-            .then(registration => console.log('registered', registration))
-            .catch(error => console.log('error', error));
-        }
-      });
+window.addEventListener('load', () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('sw.js')
+      .then(registration => console.log('registered', registration))
+      .catch(error => console.log('error', error));
+  }
+});
+
+'use strict'
+
+function pronounce() {
+
+  let word = document.getElementById('word').value;
+  let u = new SpeechSynthesisUtterance();
+  u.lang = 'en-US';
+  u.text = word;
+  speechSynthesis.speak(u);
+
+}
     </script>
   </body>
 </html>
