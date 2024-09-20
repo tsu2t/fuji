@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EitanGo!</title>
+    <!-- ↓manifestファイルの読み込みを追加↓ -->
+    <link rel="manifest" href="manifest.webmanifest" />
+  </head>
+  <body>
+    <h1>Hello PWA</h1>
+    <script>
+      window.addEventListener('load', () => {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker
+            .register('sw.js')
+            .then(registration => console.log('registered', registration))
+            .catch(error => console.log('error', error));
+        }
+      });
+    </script>
+  </body>
+</html>
