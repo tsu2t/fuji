@@ -6,10 +6,35 @@
     <title>EitanGo!</title>
     <!-- ↓manifestファイルの読み込みを追加↓ -->
     <link rel="manifest" href="manifest.webmanifest" />
+    <script src="js/storage.js"></script>
 </head>
 <body>
-    <h1>create new file</h1>
-    File name:<input type="text" name="title">
-    <a href="index.html">Back to home</a>
+    <h1>Eitan Go!</h1>
+    <div id="files"> </div>
+    <div>File name:<input type="text" id="filename" name="title"><input type="button" value="create!" onClick="create_new_file(document.getElementById('filename').value);show_files();"></div>
+    <div id="words"> </div>
+    <script>
+        show_files();
+</script>
+<script>
+window.addEventListener('load', () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('js/sw.js')
+      .then(registration => console.log('registered', registration))
+      .catch(error => console.log('error', error));
+  }
+});
+'use strict'
+
+function pronounce(word) {
+
+  let u = new SpeechSynthesisUtterance();
+  u.lang = 'en-US';
+  u.text = word;
+  speechSynthesis.speak(u);
+
+}
+</script>
 </body>
 </html>
